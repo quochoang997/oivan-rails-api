@@ -1,4 +1,4 @@
-require 'pagination'
+
 
 class ApplicationController < ActionController::API
   include Response

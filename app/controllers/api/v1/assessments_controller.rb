@@ -14,7 +14,7 @@ module Api
           post_per: params[:post_per].presence || 1
         }
         @assessments = Assessment.where(user_id: @current_user.id).page(page).per(per)
-        json_response(Pagination.build_json(@assessments, pagination_param))
+        render json: @assessments, meta: pagination_param
       end
 
       def create

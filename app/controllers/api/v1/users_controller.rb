@@ -23,7 +23,7 @@ module Api
           post_per: params[:post_per].presence || 1
         }
         @users = User.by_email.page(page).per(per)
-        json_response(Pagination.build_json(@users, pagination_param))
+        render json: @users, meta: pagination_param
       end
 
       def show

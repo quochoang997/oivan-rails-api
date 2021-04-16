@@ -14,7 +14,7 @@ module Api
           post_per: params[:post_per].presence || 1
         }
         @tests = Test.not_delete.by_name.page(page).per(per)
-        json_response(Pagination.build_json(@tests, pagination_param))
+        render json: @tests, meta: pagination_param
       end
 
       def show
@@ -22,18 +22,21 @@ module Api
       end
 
       def create
+        authorize
         @test = Test.new(test_params)
         @test.save!
         json_response(@test, :created)
       end
 
       def update
+        authorize
         @test.update!(test_params)
         json_response(@test, :created)
         # head :no_content
       end
 
       def destroy
+        authorize
         @test.update_attribute(:mark_for_delete, true)
         head :no_content
       end
