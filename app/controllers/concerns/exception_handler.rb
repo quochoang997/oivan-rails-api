@@ -19,9 +19,9 @@ module ExceptionHandler
       json_response({ error: "Forbidden" }, :forbidden)
     end
 
-    rescue_from Exception do
-      json_response({ error: "Bad request" }, :bad_request)
-    end
+    # rescue_from Exception do
+    #   json_response({ error: "Bad request" }, :bad_request)
+    # end
   end
 end
 
